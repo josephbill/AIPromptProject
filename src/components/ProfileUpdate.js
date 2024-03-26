@@ -48,7 +48,7 @@ const ProfileUpdate = () => {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer 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',
+              'Authorization': 'Bearer <yourApikey>',
             },
             body: JSON.stringify({
               model: 'text-davinci-003',
