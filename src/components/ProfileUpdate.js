@@ -44,23 +44,25 @@ const ProfileUpdate = () => {
         + " i have a " + values.risktolerance +  " tolerance level, " + " what can you advice first and then using my country of origin " + values.countoforigin + " and selected area scope indicated as " 
         + values.investmentscope + " can you point me to some institutions that can aid in the process " ; 
         console.log(prompt)
+        // TODO : use environmental variables to hide and reference your API KEYS 
         const requestOptions = {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer <yourApikey>',
+              'Authorization': 'Bearer <token>',
             },
             body: JSON.stringify({
-              model: 'text-davinci-003',
+              model: 'gpt-3.5-turbo',
               prompt: prompt,
               max_tokens: 1000,
               temperature: 0,
             })
           };
           
-          fetch('https://api.openai.com/v1/completions', requestOptions)
+          fetch('https://api.openai.com/v1/chat/completions', requestOptions)
             .then(response => response.json())
             .then(data => {
+              console.log(data)
                 setAdviceList(data.choices)
                 setIsLoading(false);
             })
@@ -81,12 +83,12 @@ const ProfileUpdate = () => {
             "reference": reference.toString(),
             "callback":"https://lucent-moxie-7b30b4.netlify.app/" 
         }
-
+        // HIDE API KEY 
         const requestOptions = {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer sk_live_cswltnqwc2rp7dedhblxpxmuoaz880jgqmi92dz'
+              'Authorization': 'Bearer <token>'
             },
             body: JSON.stringify(myObject)
           };
